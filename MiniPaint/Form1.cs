@@ -344,7 +344,7 @@ namespace MiniPaint
                 var DLL = System.Reflection.Assembly.LoadFile(fileName);
                 foreach (var type in DLL.GetTypes())
                 {
-                    if (type.Name.Contains("Creator") 
+                    if (typeof(ICreator).IsAssignableFrom(type)
                             && !type.IsAbstract && !type.IsInterface)
                     {
                         AddFigure(DLL.CreateInstance(type.FullName) as ICreator);
